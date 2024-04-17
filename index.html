@@ -20,13 +20,24 @@
     <fieldset class="add">
         <legend class="legend">Save/Update Contact</legend></br>
         <div class="new">
-            <input type="text" id="first" value="" placeholder="Enter First Name">
-            <input type="text" id="second" value=""  placeholder="Enter Last Name">
-            <input type="text" id="number" value=""  placeholder="Enter Telephone Number">
-            <div id="output"></div>
+            <input type="text" id="first" value="" placeholder="Enter First Name" required>
+            <input type="text" id="second" value=""  placeholder="Enter Last Name" required>
+            <input type="text" id="number" value=""  placeholder="Enter Telephone Number" required>
             <button id="enter">ENTER</button>
         </div>
     </fieldset>
+
+    <div class="hashData">
+        <div class="field1">
+            <div class="label">Bucket Size</div>
+            <div id="bucket"></div>
+        </div>
+        <div class="field2">
+            <div class="label">Load Factor</div>
+            <div id="load"></div>
+        </div>
+    </div>
+    
         
         
     </div>

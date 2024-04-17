@@ -1,13 +1,18 @@
 let bucket = new Array(16);
+let index = null;
+const person = [];
+const firstName = document.querySelector("#first");
+const lastName = document.querySelector("#second");
+const telephone = document.querySelector("#telephone");
 
 // converts first name into hash code
-function hash(data) {
+function hash(firstName) {
   let code = 0;
-  for (let i = 0; i < data.length; i++) {
-    code += data.charCodeAt(i);
+  for (let i = 0; i < firstName.length; i++) {
+    code += firstName.charCodeAt(i);
   }
   console.log(code % bucket.length);
-  //return code % bucket.length;
+  index = code % bucket.length;
 }
 
 // node that contains contact details
@@ -23,10 +28,16 @@ class linkedList {
     this.head = null;
     this.length = 0;
   }
-  addName(data) {
+  //sets contact details
+  addName(first, last, number) {
+    const position = bucket[index];
+    const data = [first, last, number];
     const node = new Node(data);
-    if (this.head === null) {
-      this.head = node;
+    if (position.head === null) {
+      position.head = node;
+    } else if (position.head !== null) {
+      let current = position.head;
+      current.next = node;
     }
   }
 }
@@ -40,7 +51,11 @@ function insertBlanks() {
 }
 
 insertBlanks();
-
+hash("hss");
+console.log(`index: ${index}`);
+console.log(bucket);
 let newData = new linkedList();
-newData.addName("John");
-console.log(newData);
+newData.addName("hdrjrrk", "ward", "0988888");
+newData.addName("dsfsgs", "hshjshs", "02555");
+//console.log(newData);
+console.log(bucket[index].head);
