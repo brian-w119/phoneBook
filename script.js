@@ -1,9 +1,18 @@
 let bucket = new Array(16);
 let index = null;
 const person = [];
+let totalEntries = 0;
+let indexLength = 0;
 const firstName = document.querySelector("#first");
 const lastName = document.querySelector("#second");
 const telephone = document.querySelector("#telephone");
+const output = document.querySelector("#display");
+
+//fields,buttons and display for first name search
+const search = document.querySelector("find");
+const clear = document.querySelector("#clear");
+const display = document.querySelector("#display");
+const name = document.querySelector("#query");
 
 // converts first name into hash code
 function hash(firstName) {
@@ -23,27 +32,58 @@ class Node {
   }
 }
 
-class linkedList {
+class LinkedList {
   constructor() {
     this.head = null;
     this.length = 0;
   }
   //sets contact details
-  addName(first, last, number) {
+  addNode(first, last, number) {
+    //
     const position = bucket[index];
     const data = [first, last, number];
     const node = new Node(data);
+    indexLength++;
     if (position.head === null) {
       position.head = node;
-    } else if (position.head !== null) {
+    } else {
       let current = position.head;
+      while (current.next !== null) {
+        current = current.next;
+      }
       current.next = node;
     }
+    this.length = indexLength;
+    console.log(`length: ${this.length}`);
   }
+
+  //clear all nodes at specified index in bucket
+  clearNodes() {
+    const position = bucket[index];
+    position.head = null;
+    position.next = null;
+    this.length = 0;
+  }
+
+  //returns size of linked list at index
+  indexSize() {
+    console.log(this.length);
+  }
+
+  clearAllContacts() {
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i].head !== null) {
+        this.clearNodes();
+      }
+    }
+    this.length = 0;
+  }
+  //
 }
+
 //inserts a blank linked list at each index of array on page load
 function insertBlanks() {
-  const blank = new linkedList();
+  const blank = new LinkedList();
   for (let i = 0; i < bucket.length; i++) {
     // console.log(blank);
     bucket[i] = blank;
@@ -54,8 +94,15 @@ insertBlanks();
 hash("hss");
 console.log(`index: ${index}`);
 console.log(bucket);
-let newData = new linkedList();
-newData.addName("hdrjrrk", "ward", "0988888");
-newData.addName("dsfsgs", "hshjshs", "02555");
+let newData = new LinkedList();
+newData.addNode("hdrjrrk", "ward", "0988888");
+newData.addNode("dsfsgs", "hshjshs", "02555");
+newData.addNode("abcgde", "skdkd", "123456");
+newData.addNode("durgbdf", "ofunf", "93646");
+newData.addNode("durgbdf", "ofunf", "93646");
+//newData.clearAllContacts();
+newData.indexSize();
+newData.clearAllContacts();
+newData.indexSize();
 //console.log(newData);
-console.log(bucket[index].head);
+//console.log(bucket[index].head);

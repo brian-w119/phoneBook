@@ -43,9 +43,34 @@ const myContacts = {
       const node = new Node(data);
       if (position.head === null) {
         position.head = node;
-      } else if (position.head !== null) {
+      } else {
         let current = position.head;
+        while (current.next !== null) {
+          current = current.next;
+        }
         current.next = node;
+      }
+      this.length++;
+    }
+
+    //clear all nodes at specified index in bucket
+    clearNodes() {
+      const position = bucket[index];
+      position.head = null;
+      position.next = null;
+      this.length = 0;
+    }
+
+    //returns size of linked list at index
+    indexSize() {
+      console.log(this.length);
+    }
+
+    clearAllContacts() {
+      for (let i = 0; i < bucket.length; i++) {
+        if (bucket[i].head !== null) {
+          this.clearNodes();
+        }
       }
     }
   },
